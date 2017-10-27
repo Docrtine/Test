@@ -1,0 +1,19 @@
+form {
+    width: 20%;
+}
+fieldset {
+    width: auto;
+}
+input, select {
+    margin: auto;
+    width: 100%;
+}
+label {
+    font-size: 12px;
+}
+.check {
+    width: auto;
+}
+button {
+    float: right;
+}
