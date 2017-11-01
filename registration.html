@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="jquery-2.0.2.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+
+                var borderValueError = "solid red 1.5px";
+                $("#secondName").on("blur", function (e) {
+                    var value = $(this).val();
+                    if (value) {
+                        if (value < 3 ) {
+                            $(this).css("border", borderValueError);
+                        }
+                        else {
+                            $(this).css("border", "");
+                        }
+                    }
+                });
+            $("#email").on("blur", function(e) {
+                var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+                if(pattern.test($(this).val())){
+                    $(this).css("border", "");
+                    } else {
+                    $(this).css("border", borderValueError);
+                    alert("no")
+                }
+            })
+        });
+
+    </script>
 </head>
 <body>
 <form name="form" enctype="multipart/form-data">
@@ -11,7 +39,7 @@
         <legend>Sign up</legend>
         <p><input id="name" type="text" placeholder="Username" required ></p>
         <p><input id="secondName" type="text" max="60" min="3" placeholder="Secondname" required ></p>
-        <p><input id="email" type="email" placeholder="Email" required ></p>
+        <p><input id="email" type="email" placeholder="Email" required ><span id="valid"></span></p>
         <p><select id="gender">
         <option value="male">Male</option>
         <option value="female">Female</option>
