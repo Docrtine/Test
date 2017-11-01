@@ -8,29 +8,33 @@
     <script>
         $(document).ready(function() {
 
-                var borderValueError = "solid red 1.5px";
-                $("#secondName").on("blur", function (e) {
-                    var value = $(this).val();
-                    if (value) {
-                        if (value < 3 ) {
-                            $(this).css("border", borderValueError);
-                        }
-                        else {
-                            $(this).css("border", "");
-                        }
+            var borderValueError = "solid red 1.5px";
+            function checkSecondName() {
+                var value = $(this).val();
+                if (value) {
+                    if (value < 3 ) {
+                        $(this).css("border", borderValueError);
                     }
-                });
-            $("#email").on("blur", function(e) {
+                    else {
+                        $(this).css("border", "");
+                    }
+                }
+                return true
+            }
+            function checkEmail() {
                 var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
-                if(pattern.test($(this).val())){
+                if (pattern.test($(this).val())) {
                     $(this).css("border", "");
-                    } else {
+                } else {
                     $(this).css("border", borderValueError);
                     alert("no")
                 }
-            })
-        });
+                return true
+            }
 
+            $("#secondName").on("blur", checkSecondName);
+            $("#email").on("blur",checkEmail);
+        });
     </script>
 </head>
 <body>
@@ -41,12 +45,12 @@
         <p><input id="secondName" type="text" max="60" min="3" placeholder="Secondname" required ></p>
         <p><input id="email" type="email" placeholder="Email" required ><span id="valid"></span></p>
         <p><select id="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-    </select></p>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select></p>
         <p><input id="pass" type="password" placeholder="Password" required></p>
         <p><input class="check" id="check" type="checkbox" required><label for="check">Conditions of Agreement</label></p>
-    <button id="button" type="submit">Send</button>
+        <button id="button" type="submit">Send</button>
     </fieldset>
 </form>
 </body>
