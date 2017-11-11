@@ -8,34 +8,75 @@
     <script>
         $(document).ready(function() {
 
+            function showEmpty (container) {
+                container.addClass("valueError");
+                container.attr("placeholder", "Заполните это поле");
+            }
+            function showError(container, errorMessage) {
+                container.addClass("valueError");
+                $("#errors").text(errorMessage);
+                /*
+                var msgElem = $("<span>" + errorMessage + "</span>");
+                msgElem.className = "errorMessage";
+                container.after(msgElem).show();
+                */
+
+            }
+            function resetError(container) {
+                container.removeClass("valueError");
+                $("#errors").text("");
+
+            }
             function checkSecondName() {
                 var value = $(this).val();
                 if(value) {
                     if (value.length > 3) {
-                        $("#errors").text("");
-                        $(this).removeClass("valueError");
+                        resetError($(this));
                         return true
                     } else {
-                        $("#errors").text("Имя должно содержать более 3х букв");
+                        showError($(this), "Имя должно содержать более 3х букв");
                         $(this).addClass("valueError");
                     }
                 }
                 else {
-                    $(this).addClass("valueError");
+                    showEmpty($(this));
                 }
+                return false;
             }
             function checkEmail() {
                 var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
-                if (pattern.test($(this).val())) {
-                    $(this).css("border", "");
-                } else {
-                    $(this).addClass("valueError");
+                if($(this).val()) {
+                    resetError($(this));
+                    if (pattern.test($(this).val())) {
+                        resetError($(this));
+                        return true
+                    } else {
+                        $(this).addClass("valueError");
+                        showError($(this), "Введите корректный e-mail")
+                    }
                 }
-                return true
+                else {
+                    showEmpty($(this));
+                    return false;
+                }
+
+
             }
-            function checkForm() {
-                checkEmail();
-                checkSecondName();
+
+            function checkForm(e) {
+                if(checkSecondName()) {
+                    alert("TRUE");
+                }
+                else {
+                    alert("FALSE");
+                }
+                e.preventDefault();
+                /*if(checkSecondName()) {
+                    $("form").submit();
+                }
+                else {
+                    e.preventDefault();
+                }*/
             }
             $("#secondname").on("blur", checkSecondName);
             $("#email").on("blur", checkEmail);
