@@ -62,24 +62,42 @@
 
 
             }
-
-            function checkForm(e) {
-                if(checkSecondName()) {
-                    alert("TRUE");
+            function checkEmpty() {
+                if($(this).val()) {
+                    resetError($(this));
+                    return true;
                 }
                 else {
-                    alert("FALSE");
+                    showEmpty($(this));
+                    return false;
+                }
+            }
+
+            function checkBox(container) {
+                if(container.prop("checked") != true) {
+                    showError(container, "Вы не согласились с условиями");
+                    return false
+                }
+                else {
+                    resetError(container);
+                    return true;
+                }
+            }
+            function checkForm(e) {
+                if(checkBox($("#check"))) {
+                    alert("true");
+                    $("#button").submit(function(){alert("Успешно")});
+                }
+                else {
+                    alert("Ошибка");
                 }
                 e.preventDefault();
-                /*if(checkSecondName()) {
-                    $("form").submit();
-                }
-                else {
-                    e.preventDefault();
-                }*/
             }
+
+
             $("#secondname").on("blur", checkSecondName);
             $("#email").on("blur", checkEmail);
+            $("#pass,#name").on("blur", checkEmpty);
             $("#button").on("click", checkForm);
         });
     </script>
