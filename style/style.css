@@ -10,6 +10,9 @@
     background-color: #c5ced8;
 
 }
+#errors {
+    text-align: center;
+}
 form {
     width: auto;
 }
@@ -34,4 +37,61 @@ button {
 }
 .valueError {
     border: solid red 1.5px;
+}
+.errorMessage {
+    color: red;
+}
+span {
+    font-size: 10px;
+}
+
+#mainCompanies {
+    width:70%;
+    height:70%;
+    position:absolute;
+    left:15%;
+    top:2%;
+
+}
+#total {
+    float: left;
+    width: 40%;
+    height: 40%;
+    border: thick solid #d8d5d6;
+    margin: 10px;
+
+
+
+}
+#companiesList {
+    float: right;
+    width: 40%;
+    height: 40%;
+    border: thick solid #d8d5d6;
+    margin: 10px;
+
+}
+#diagrams {
+    float: left;
+    width: 40%;
+    height: 40%;
+    border: thick solid #d8d5d6;
+    margin: 10px;
+
+}
+#news {
+    float: right;
+    width: 40%;
+    height: 40%;
+    border: thick solid #d8d5d6;
+    margin: 10px;
+
+}
+.companiesSpan {
+    width: 100%;
+    height: 15%;
+    background-color: #d8d5d6;
+    text-align: left;
+
+
 }
