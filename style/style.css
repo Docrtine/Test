@@ -95,3 +95,27 @@ span {
 
 
 }
+#companies {
+    overflow-y: scroll;
+    height: 75%;
+    width: 95%;
+    margin: 2%;
+    border: 0.5px solid #000000;
+}
+.elem {
+    height: 25px;
+    border-top: 0.5px solid #000000;
+    text-align: left;
+    font-size: 14px;
+    padding-top: 5px;
+}
+A {
+    color: #000000;
+}
+A:link { text-decoration: none; }
+A:visited { text-decoration: none; }
+A:active { text-decoration: none; }
+A:hover {
+    text-decoration: none;
+
+}

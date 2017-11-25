@@ -13,8 +13,24 @@
                 type: "post",
                 success: function (data, textStatus) {
                     var list = data.list;
-                    var total = list.length;
-                    $("#totalCompanies").text(total);
+
+                    function totalCompanies () {
+                        var total = list.length;
+                        $("#totalCompanies").text(total);
+                    }
+
+
+                    function listOfCompanies() {
+                        var fRow = $("<a><div class='elem'></div></a>");
+                        console.log(list);
+                        for(var i = 0; i < list.length; i++) {
+                            var f = fRow.clone().appendTo("#companies").attr("href", "#").children().filter("div").text(list[i].name);
+                            //var f = fRow.clone().appendTo("#companies").children().filter("a").text(list[i].name).attr("href", "#");
+                           // f.appendTo("#companies");
+                        }
+                    }
+                    listOfCompanies();
+                    totalCompanies();
                 }
             });
 
@@ -31,6 +47,7 @@
     </div>
     <div id="companiesList">
         <div id="totalCompanies" class="companiesSpan">List of Companies</div>
+        <div id="companies"></div>
 
     </div>
     <div id="diagrams">
