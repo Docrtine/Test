@@ -119,3 +119,10 @@ A:hover {
     text-decoration: none;
 
 }
+#uncompanies {
+    float: right;
+    width: 98%;
+    height: 30%;
+    border: solid #d8d5d6 1px;
+    margin: 8px;
+}

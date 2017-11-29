@@ -7,6 +7,7 @@
     <script src="jquery-2.0.2.js" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
+            $("#uncompanies").hide();
             var data = $.ajax({
                 url: 'http://codeit.pro/frontTestTask/company/getList',
                 dataType : "json",
@@ -19,18 +20,31 @@
                         $("#totalCompanies").text(total);
                     }
 
-
                     function listOfCompanies() {
                         var fRow = $("<a><div class='elem'></div></a>");
                         console.log(list);
                         for(var i = 0; i < list.length; i++) {
-                            var f = fRow.clone().appendTo("#companies").attr("href", "#").children().filter("div").text(list[i].name);
-                            //var f = fRow.clone().appendTo("#companies").children().filter("a").text(list[i].name).attr("href", "#");
-                           // f.appendTo("#companies");
+                            var f = fRow.clone().appendTo("#companies")
+                                    .attr("href", "#").children()
+                                    .filter("div").text(list[i].name)
+                                    .on("click", {listOfPartners: list[i].partners}, showCompanyPartners);
                         }
+                    }
+
+                    function showCompanyPartners(e) {
+                        var data = e.data.listOfPartners;
+
+                        for(var i = 0; i < data.length; i++) {
+                            console.log(data[i]);
+                           //график
+                        }
+                        $("#uncompanies").show("fast");
+                        e.preventDefault();
+
                     }
                     listOfCompanies();
                     totalCompanies();
+
                 }
             });
 
@@ -49,6 +63,10 @@
         <div id="totalCompanies" class="companiesSpan">List of Companies</div>
         <div id="companies"></div>
 
+    </div>
+    <div id="uncompanies">
+        <div id="totalCompanies" class="companiesSpan">Company partners</div>
+        <div id="uncompany"></div>
     </div>
     <div id="diagrams">
         <div id="totalCompanies" class="companiesSpan">Companies by Location</div>
